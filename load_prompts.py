@@ -3,10 +3,6 @@ import json
 from collections import OrderedDict
 
 class LoadPrompts:
-    """
-    A custom node to load prompts and pass them through.
-    """
-
     def __init__(self):
         self.json_file = os.path.join(os.path.dirname(__file__), 'ai_prompts.json')
 
@@ -32,10 +28,10 @@ class LoadPrompts:
     OUTPUT_NODE = False
     CATEGORY = "ArteMoon"
 
-    def load_prompts(self, mode, Que="", Res="", Neg="",load_index=None, Positive="", Negative=""):
+    def load_prompts(self, mode, Que="", Res="", Neg="", load_index=None, Positive="", Negative=""):
         if mode == "clear":
             self.clear_json()
-            return ("", "", "")
+            return (Que, Positive, Negative)
 
         existing_data = self.load_json()
 
@@ -82,14 +78,24 @@ class LoadPrompts:
             json.dump([], f, indent=4)
 
     def load_json(self):
-        if os.path.exists(self.json_file):
-            with open(self.json_file) as f:
-                return json.load(f)
-        return []
+        try:
+            if os.path.exists(self.json_file):
+                with open(self.json_file) as f:
+                    return json.load(f)
+            else:
+                return []
+        except FileNotFoundError:
+            return []
+        except json.JSONDecodeError as e:
+            print(f"JSON 解析错误: {e}")
+            return []
 
     def save_json(self, data):
-        with open(self.json_file, 'w') as f:
-            json.dump(data, f, indent=4)
+        try:
+            with open(self.json_file, 'w') as f:
+                json.dump(data, f, indent=4)
+        except IOError as e:
+            print(f"I/O Error: {e}")
 
     def remove_duplicates(self, input_string):
         items = [item.strip() for item in input_string.replace(',', '.').split('.')]
