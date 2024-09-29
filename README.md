@@ -1,6 +1,6 @@
 This plugin works with [IF_AI_Tools](https://github.com/if-ai/ComfyUI-IF_AI_tools) to build a workflow in ComfyUI that uses AI to assist in generating prompts.
 
-![alt text](1.png)
+![example](https://github.com/user-attachments/assets/909b2275-7617-4d4d-9dca-90e42017b98e)
 
 The Load Prompts node features the following functionalities:
 
