@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-artemoon"
+description = "This plugin works with [a/IF_AI_Tools](https://github.com/if-ai/ComfyUI-IF_AI_tools) to build a workflow in ComfyUI that uses AI to assist in generating prompts."
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/Moooonet/ComfyUI-ArteMoon"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-ArteMoon"
+Icon = ""
